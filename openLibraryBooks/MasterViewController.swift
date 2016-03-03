@@ -9,12 +9,14 @@
 import UIKit
 
 struct Book {
+    var isbn : String
     var title : String
     var cover : UIImage
     var authors : [String]
     
     
-    init(title: String, cover : UIImage, authors : [String]){
+    init(isbn : String, title: String, cover : UIImage, authors : [String]){
+        self.isbn  = isbn
         self.title = title
         self.cover = cover
         self.authors = authors
@@ -46,14 +48,18 @@ class MasterViewController: UITableViewController {
 
 
     }
+    
+    
     @IBOutlet weak var bookSearch: UITextField!
 
     
     
     func searchOpenLibraryByISBN(sender: UITextField) -> Book {
-        var books : Book = Book(title: "", cover: UIImage() , authors: [])
+        let isbn : String = sender.text!
+        var books : Book = Book(isbn: isbn, title: "", cover: UIImage() , authors: [])
+
         
-        let urls = "https://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:\(sender.text!)"
+        let urls = "https://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:\(isbn)"
         let safeURL = urls.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         let url = NSURL(string: safeURL)
         let datos:NSData? = NSData(contentsOfURL: url!)
@@ -69,7 +75,7 @@ class MasterViewController: UITableViewController {
             self.presentViewController(alerta, animated: true, completion: nil)
             sender.text = "";
         } else {
-            books =  self.parceBooksJson(datos!)
+            books =  self.parceBooksJson(datos!, isbn: isbn)
             
         }
         
@@ -78,8 +84,8 @@ class MasterViewController: UITableViewController {
     
     
     
-    func parceBooksJson(nsdata: NSData) -> Book {
-        var bookDoc : Book = Book(title: "", cover: UIImage() , authors: [])
+    func parceBooksJson(nsdata: NSData, isbn: String) -> Book {
+        var bookDoc : Book = Book(isbn: "", title: "", cover: UIImage() , authors: [])
         
         do {
             
@@ -110,7 +116,7 @@ class MasterViewController: UITableViewController {
                 }
                 print(cover)
                 
-                bookDoc = Book(title: title, cover: cover , authors: authorsArray)
+                bookDoc = Book(isbn : isbn, title: title, cover: cover , authors: authorsArray)
             }
             
             

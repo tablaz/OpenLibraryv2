@@ -12,11 +12,10 @@ class DetailViewController: UIViewController {
 
     
     
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
 
+    @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var coverImage: UIImageView!
-    
-    
+    @IBOutlet weak var isbnLabel: UILabel!
     @IBOutlet weak var authorsList: UITextView!
     
     
@@ -35,6 +34,10 @@ class DetailViewController: UIViewController {
             if let label = self.detailDescriptionLabel {
                 label.text = detail.title
             }
+            if let isbnLabel = self.isbnLabel {
+                isbnLabel.text = detail.isbn
+            }
+            
             if let cover = self.coverImage{
                 cover.image = detail.cover
             }
