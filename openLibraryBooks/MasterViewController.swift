@@ -35,15 +35,15 @@ class MasterViewController: UITableViewController {
         sender.text = ""
         sender.resignFirstResponder()
         
-        /* Trying to push the detail view programatically
+        /* Trying to push the detail view programatically */
         let lastSectionIndex = self.tableView.numberOfSections-1
         let lastSectionLastRow = self.tableView.numberOfRowsInSection(lastSectionIndex) - 1
         let indexPath = NSIndexPath(forRow:lastSectionLastRow, inSection: lastSectionIndex)
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        print(cell?.textLabel?.text)
-        
-        self.performSegueWithIdentifier("showDetail", sender: cell)
-        */
+        // let cell = tableView.cellForRowAtIndexPath(indexPath)
+        // print(cell?.textLabel?.text)
+        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Middle)
+        self.performSegueWithIdentifier("showDetail", sender: nil )
+
 
     }
     @IBOutlet weak var bookSearch: UITextField!
@@ -124,7 +124,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
+        // self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
          let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "enableBookSearch:")
         //let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
