@@ -10,14 +10,10 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    
-    
-
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var isbnLabel: UILabel!
     @IBOutlet weak var authorsList: UITextView!
-    
     
 
     var detailItem: Book? {
