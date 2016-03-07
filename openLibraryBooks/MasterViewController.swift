@@ -104,7 +104,7 @@ class MasterViewController: UITableViewController {
                 }
                 
                 // Process Book Cover
-                var cover : UIImage = UIImage(named: "missingbook.png")!
+                var cover : UIImage = UIImage(named: "nocover")!
                 
                 if value["cover"] != nil {
                     let imageUrls = value["cover"]??["large"]

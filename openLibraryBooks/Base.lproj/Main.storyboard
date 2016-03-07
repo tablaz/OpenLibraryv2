@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -33,13 +34,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
                                 <rect key="frame" x="20" y="292" width="560" height="17"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-E1-t3e">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="missingbook" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-E1-t3e">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWK-Ki-7KH">
@@ -92,6 +94,7 @@
                                 </variation>
                             </textView>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="V0M-Fl-gxP" secondAttribute="trailing" constant="20" id="3jV-tE-3ln"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="trailing" secondItem="JWK-Ki-7KH" secondAttribute="trailing" id="7WM-C5-Os7"/>
@@ -123,18 +126,14 @@
                                 <exclude reference="VjP-fY-Ws2"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="ojt-BU-00t"/>
+                                <exclude reference="paj-2d-4rC"/>
                                 <exclude reference="8OT-HN-HcW"/>
                                 <exclude reference="Q8w-SA-uh2"/>
                                 <exclude reference="agS-fo-vvu"/>
                                 <exclude reference="xGE-Rp-ebh"/>
-                                <exclude reference="3jV-tE-3ln"/>
-                                <exclude reference="7WM-C5-Os7"/>
-                                <exclude reference="Oxg-UP-Fyr"/>
-                                <exclude reference="xAs-Q1-Tp9"/>
                                 <exclude reference="LsI-L5-vbt"/>
                                 <exclude reference="tl5-YU-x8l"/>
-                                <exclude reference="ojt-BU-00t"/>
-                                <exclude reference="paj-2d-4rC"/>
                                 <exclude reference="QI7-F6-5p3"/>
                                 <exclude reference="esR-sV-h9J"/>
                                 <exclude reference="jjD-qe-yO0"/>
@@ -142,6 +141,10 @@
                                 <exclude reference="dPL-ZL-NGB"/>
                                 <exclude reference="oP8-GR-d9z"/>
                                 <exclude reference="snp-Vk-ZGN"/>
+                                <exclude reference="3jV-tE-3ln"/>
+                                <exclude reference="7WM-C5-Os7"/>
+                                <exclude reference="Oxg-UP-Fyr"/>
+                                <exclude reference="xAs-Q1-Tp9"/>
                                 <exclude reference="wXh-ch-Lf7"/>
                             </mask>
                         </variation>
@@ -154,18 +157,14 @@
                                 <include reference="VjP-fY-Ws2"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ojt-BU-00t"/>
+                                <include reference="paj-2d-4rC"/>
                                 <include reference="8OT-HN-HcW"/>
                                 <include reference="Q8w-SA-uh2"/>
                                 <include reference="agS-fo-vvu"/>
                                 <include reference="xGE-Rp-ebh"/>
-                                <include reference="3jV-tE-3ln"/>
-                                <include reference="7WM-C5-Os7"/>
-                                <include reference="Oxg-UP-Fyr"/>
-                                <include reference="xAs-Q1-Tp9"/>
                                 <include reference="LsI-L5-vbt"/>
                                 <include reference="tl5-YU-x8l"/>
-                                <include reference="ojt-BU-00t"/>
-                                <include reference="paj-2d-4rC"/>
                                 <include reference="QI7-F6-5p3"/>
                                 <include reference="esR-sV-h9J"/>
                                 <include reference="jjD-qe-yO0"/>
@@ -173,6 +172,10 @@
                                 <include reference="dPL-ZL-NGB"/>
                                 <include reference="oP8-GR-d9z"/>
                                 <include reference="snp-Vk-ZGN"/>
+                                <include reference="3jV-tE-3ln"/>
+                                <include reference="7WM-C5-Os7"/>
+                                <include reference="Oxg-UP-Fyr"/>
+                                <include reference="xAs-Q1-Tp9"/>
                                 <include reference="wXh-ch-Lf7"/>
                             </mask>
                         </variation>
@@ -277,6 +280,9 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="missingbook" width="242" height="266"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>

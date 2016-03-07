@@ -99,6 +99,7 @@
 				TargetAttributes = {
 					8C5582981C8655C600F9EC8D = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 7QZT7WXKHC;
 					};
 				};
 			};
@@ -290,6 +291,7 @@
 				8C5582AF1C8655C600F9EC8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
