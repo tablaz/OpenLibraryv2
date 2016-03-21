@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct Book {
     var isbn : String
@@ -29,33 +30,79 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
     var booksStruc = [Book]()
+    
+    var context : NSManagedObjectContext? = nil
+
 
     @IBAction func bookSearch(sender: UITextField) {
-        let bookResult : Book = searchOpenLibraryByISBN(sender)
-        booksStruc.append(bookResult)
-        self.tableView!.reloadData()
-        sender.text = ""
-        sender.resignFirstResponder()
         
-        /* Trying to push the detail view programatically */
-        let lastSectionIndex = self.tableView.numberOfSections-1
-        let lastSectionLastRow = self.tableView.numberOfRowsInSection(lastSectionIndex) - 1
-        let indexPath = NSIndexPath(forRow:lastSectionLastRow, inSection: lastSectionIndex)
-        // let cell = tableView.cellForRowAtIndexPath(indexPath)
-        // print(cell?.textLabel?.text)
-        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Middle)
-        self.performSegueWithIdentifier("showDetail", sender: nil )
-
-
+        
+        let bookEntity = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.context!)
+        let request = bookEntity?.managedObjectModel.fetchRequestFromTemplateWithName("getBook", substitutionVariables: ["isbn" : sender.text!])
+        
+        do { let bookEntitySearch = try self.context?.executeFetchRequest(request!)
+            if (bookEntitySearch?.count > 0){
+                print("ya esta ese ISBN")
+                return
+            }
+            
+        } catch {
+            
+        }
+        
+        
+        let bookResult : Book = searchOpenLibraryByISBN(sender)
+        if (bookResult.title != "") {
+            let newBookEntity = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: self.context!)
+            
+            newBookEntity.setValue(bookResult.isbn, forKey: "isbn")
+            newBookEntity.setValue(bookResult.title, forKey: "title")
+            newBookEntity.setValue(UIImagePNGRepresentation(bookResult.cover), forKey: "cover")
+            newBookEntity.setValue(createAuthorsEntity(bookResult.authors), forKey: "has")
+            
+            do{
+                try self.context?.save()
+            } catch{
+                
+            }
+            
+            booksStruc.append(bookResult)
+            self.tableView!.reloadData()
+            sender.text = ""
+            sender.resignFirstResponder()
+            
+            /* Trying to push the detail view programatically */
+            let lastSectionIndex = self.tableView.numberOfSections-1
+            let lastSectionLastRow = self.tableView.numberOfRowsInSection(lastSectionIndex) - 1
+            let indexPath = NSIndexPath(forRow:lastSectionLastRow, inSection: lastSectionIndex)
+            // let cell = tableView.cellForRowAtIndexPath(indexPath)
+            // print(cell?.textLabel?.text)
+            self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Middle)
+            self.performSegueWithIdentifier("showDetail", sender: nil )
+        }
+        
     }
     
     
     @IBOutlet weak var bookSearch: UITextField!
 
+    func createAuthorsEntity(authors : [String]) -> Set<NSObject> {
+        var entities = Set<NSObject>()
+        
+        for author in authors {
+            let authorEntity = NSEntityDescription.insertNewObjectForEntityForName("Author", inManagedObjectContext: self.context!)
+            authorEntity.setValue(author, forKey: "name")
+            entities.insert(authorEntity)
+        }
+        return entities
+    }
     
     
     func searchOpenLibraryByISBN(sender: UITextField) -> Book {
         let isbn : String = sender.text!
+        
+
+
         var books : Book = Book(isbn: isbn, title: "", cover: UIImage() , authors: [])
 
         
@@ -129,6 +176,8 @@ class MasterViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         // self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -140,6 +189,34 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        // LOAD DATA
+        self.context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
+        let seccionEntity = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.context!)
+        
+        let request = seccionEntity?.managedObjectModel.fetchRequestTemplateForName("getBooks")
+        do{
+            let bookEntities = try self.context?.executeFetchRequest(request!)
+            for bookEntity in bookEntities! {
+                let title = bookEntity.valueForKey("title") as! String
+                let isbn = bookEntity.valueForKey("isbn") as! String
+                let cover : UIImage = UIImage(data: bookEntity.valueForKey("cover") as! NSData)!
+                
+                let authorEntities = bookEntity.valueForKey("has") as! Set<NSObject>
+                var authorArray = [String]()
+                for authorEntity in authorEntities {
+                    let author = authorEntity.valueForKey("name") as! String
+                    authorArray.append(author)
+                    
+                }
+                self.booksStruc.append(Book(isbn: isbn, title: title, cover: cover, authors: authorArray))
+                
+            }
+        } catch{
+            
+        }
+        
     }
 
     func enableBookSearch(sender: AnyObject) {

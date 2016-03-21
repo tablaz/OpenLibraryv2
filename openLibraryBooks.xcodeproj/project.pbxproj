@@ -13,6 +13,7 @@
 		8C5582A41C8655C600F9EC8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5582A21C8655C600F9EC8D /* Main.storyboard */; };
 		8C5582A61C8655C600F9EC8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C5582A51C8655C600F9EC8D /* Assets.xcassets */; };
 		8C5582A91C8655C600F9EC8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5582A71C8655C600F9EC8D /* LaunchScreen.storyboard */; };
+		8C9260341C9F4BB900679F97 /* BooksCDM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C9260321C9F4BB900679F97 /* BooksCDM.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8C5582A51C8655C600F9EC8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C5582A81C8655C600F9EC8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C5582AA1C8655C600F9EC8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C9260331C9F4BB900679F97 /* BooksCDM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BooksCDM.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				8C5582A51C8655C600F9EC8D /* Assets.xcassets */,
 				8C5582A71C8655C600F9EC8D /* LaunchScreen.storyboard */,
 				8C5582AA1C8655C600F9EC8D /* Info.plist */,
+				8C9260321C9F4BB900679F97 /* BooksCDM.xcdatamodeld */,
 			);
 			path = openLibraryBooks;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 				8C5582A11C8655C600F9EC8D /* DetailViewController.swift in Sources */,
 				8C55829F1C8655C600F9EC8D /* MasterViewController.swift in Sources */,
 				8C55829D1C8655C600F9EC8D /* AppDelegate.swift in Sources */,
+				8C9260341C9F4BB900679F97 /* BooksCDM.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +298,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8C9260321C9F4BB900679F97 /* BooksCDM.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8C9260331C9F4BB900679F97 /* BooksCDM.xcdatamodel */,
+			);
+			currentVersion = 8C9260331C9F4BB900679F97 /* BooksCDM.xcdatamodel */;
+			path = BooksCDM.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8C5582911C8655C600F9EC8D /* Project object */;
 }
