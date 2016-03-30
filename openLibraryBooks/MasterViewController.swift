@@ -161,7 +161,6 @@ class MasterViewController: UITableViewController {
                         cover = UIImage(data: data!)!
                     }
                 }
-                print(cover)
                 
                 bookDoc = Book(isbn : isbn, title: title, cover: cover , authors: authorsArray)
             }
